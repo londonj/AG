@@ -57,6 +57,15 @@
             border-radius: 4px;
             display: none;
         }
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+        input.error {
+            border-color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -67,7 +76,11 @@
                 <div class="form-group">
                     <label for="appName">Application Name:</label>
                     <input type="text" id="appName" name="appName" required 
-                           placeholder="Enter the application name">
+                           placeholder="Enter the application name" maxlength="10"
+                           oninput="validateAppName(this)">
+                    <div id="appNameError" class="error-message">
+                        Application name must be 10 characters or less to ensure the listener name doesn't exceed 15 characters.
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="locationType">Location Type:</label>
@@ -108,6 +121,21 @@
     </div>
 
     <script>
+        function validateAppName(input) {
+            const errorDiv = document.getElementById('appNameError');
+            const submitButton = document.querySelector('button[type="submit"]');
+            
+            if (input.value.length > 10) {
+                input.classList.add('error');
+                errorDiv.style.display = 'block';
+                submitButton.disabled = true;
+            } else {
+                input.classList.remove('error');
+                errorDiv.style.display = 'none';
+                submitButton.disabled = false;
+            }
+        }
+
         function toggleLocationDropdowns() {
             const locationType = document.getElementById('locationType').value;
             const azureGroup = document.getElementById('azureLocationGroup');
