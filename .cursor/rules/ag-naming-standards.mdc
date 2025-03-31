@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- AG name is AG{Application Name}_{On-Prem State Abbreviation or Azure Region}
+- AG Listener name is L_{Application Name}_{On-Prem State Abbreviation or Azure Region}
