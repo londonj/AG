@@ -146,9 +146,10 @@
                 <h3>Generated Names:</h3>
                 <p><strong>Availability Group Name:</strong><br>${agName}</p>
                 <p><strong>Listener Name:</strong><br>${listenerName}</p>
-                <p><em>Examples:<br>
-                For Azure: AG{APP}_EC, L_{APP}_EC<br>
-                For On-Prem: AG{APP}_AZ, L_{APP}_AZ</em></p>
+                <hr>
+                <h4>Naming Standards:</h4>
+                <p><strong>AG Template:</strong><br>AG{Application Name}_{OnPrem State or Azure Region}</p>
+                <p><strong>Listener Template:</strong><br>L_{Application Name}_{OnPrem State or Azure Region}</p>
             `;
         });
 
