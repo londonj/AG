@@ -136,9 +136,9 @@
                 ? document.getElementById('azureLocation').value 
                 : document.getElementById('onPremLocation').value;
             
-            // AG naming logic with state abbreviations for on-prem
-            const agName = `AG${appName.toUpperCase()}_${location.toUpperCase()}`;
-            const listenerName = `L_${appName.toUpperCase()}_${location.toUpperCase()}`;
+            // AG naming logic preserving app name case
+            const agName = `AG${appName}_${location.toUpperCase()}`;
+            const listenerName = `L_${appName}_${location.toUpperCase()}`;
             
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
