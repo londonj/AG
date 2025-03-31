@@ -137,14 +137,18 @@
                 : document.getElementById('onPremLocation').value;
             
             // AG naming logic with state abbreviations for on-prem
-            const agName = `ag-${appName.toLowerCase()}-${location.toLowerCase()}`;
+            const agName = `AG${appName.toUpperCase()}_${location.toUpperCase()}`;
+            const listenerName = `L_${appName.toUpperCase()}_${location.toUpperCase()}`;
             
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = `
-                <h3>Generated Availability Group Name:</h3>
-                <p><strong>${agName}</strong></p>
-                <p><em>Note: This will generate names like "ag-appname-az" for EDC, "ag-appname-ne" for MDC, and "ag-appname-tx" for RDC.</em></p>
+                <h3>Generated Names:</h3>
+                <p><strong>Availability Group Name:</strong><br>${agName}</p>
+                <p><strong>Listener Name:</strong><br>${listenerName}</p>
+                <p><em>Examples:<br>
+                For Azure: AG{APP}_EC, L_{APP}_EC<br>
+                For On-Prem: AG{APP}_AZ, L_{APP}_AZ</em></p>
             `;
         });
 
