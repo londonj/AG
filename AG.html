@@ -96,9 +96,9 @@
                     <label for="onPremLocation">On-Premises Data Center:</label>
                     <select id="onPremLocation" name="onPremLocation">
                         <option value="">Select Data Center</option>
-                        <option value="EDC">EDC - Arizona</option>
-                        <option value="MDC">MDC - Nebraska</option>
-                        <option value="RDC">RDC - Texas</option>
+                        <option value="AZ">EDC - Arizona (AZ)</option>
+                        <option value="NE">MDC - Nebraska (NE)</option>
+                        <option value="TX">RDC - Texas (TX)</option>
                     </select>
                 </div>
                 <button type="submit">Generate AG Name</button>
@@ -136,15 +136,15 @@
                 ? document.getElementById('azureLocation').value 
                 : document.getElementById('onPremLocation').value;
             
-            // Placeholder for AG naming logic
-            const agName = `ag-${appName.toLowerCase()}-${location}`;
+            // AG naming logic with state abbreviations for on-prem
+            const agName = `ag-${appName.toLowerCase()}-${location.toLowerCase()}`;
             
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = `
                 <h3>Generated Availability Group Name:</h3>
                 <p><strong>${agName}</strong></p>
-                <p><em>Note: This is a placeholder. The actual naming convention will be implemented based on your requirements.</em></p>
+                <p><em>Note: This will generate names like "ag-appname-az" for EDC, "ag-appname-ne" for MDC, and "ag-appname-tx" for RDC.</em></p>
             `;
         });
 
