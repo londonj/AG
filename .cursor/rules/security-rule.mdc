@@ -1,0 +1,33 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+- Always adhere to these security rules 
+
+## No Server-Side Processing:
+- It's a purely static HTML file with client-side JavaScript  
+- No server-side code execution  
+- No database connections  
+- No file system access  
+
+## No External Connections:
+- Makes no AJAX or fetch calls  
+- Doesn't load any external resources (scripts, styles, images)  
+- No API calls to external services  
+- All code is self-contained in the single HTML file  
+
+## Limited Browser APIs:
+- Only uses basic DOM manipulation  
+- The only browser API used is the clipboard API (`navigator.clipboard.writeText()`)  
+- No access to sensitive browser APIs  
+- No local storage or cookie usage  
+
+## Input Handling:
+- All input validation is client-side  
+- No data persistence  
+- No form submissions to any endpoints  
+- Input is only used for string manipulation  
+
+
+The application is essentially a static web page that performs simple text formatting, making it very safe to host and run locally. You could even open it directly in a browser without a web server, and it would work the same way.
