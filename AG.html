@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AG Naming Standards Helper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Availability Group Naming Standards Helper</h1>
+        <div id="content">
+            <form id="agForm">
+                <div class="form-group">
+                    <label for="appName">Application Name:</label>
+                    <input type="text" id="appName" name="appName" required 
+                           placeholder="Enter the application name">
+                </div>
+                <div class="form-group">
+                    <label for="locationType">Location Type:</label>
+                    <select id="locationType" name="locationType" required onchange="toggleLocationDropdowns()">
+                        <option value="">Select Location Type</option>
+                        <option value="azure">Azure Region</option>
+                        <option value="onprem">On-Premises Data Center</option>
+                    </select>
+                </div>
+                <div class="form-group" id="azureLocationGroup" style="display: none;">
+                    <label for="azureLocation">Azure Region:</label>
+                    <select id="azureLocation" name="azureLocation">
+                        <option value="">Select Azure Region</option>
+                        <option value="C1">C1 - Central US (Iowa)</option>
+                        <option value="EC">EC - East US (Virginia)</option>
+                        <option value="E2">E2 - East US 2 (Virginia)</option>
+                        <option value="E3">E3 - East US 3 (Georgia)</option>
+                        <option value="NC">NC - North Central US (Illinois)</option>
+                        <option value="SC">SC - South Central US (Texas)</option>
+                        <option value="WC">WC - West US (California)</option>
+                        <option value="W2">W2 - West US 2 (Washington)</option>
+                        <option value="W3">W3 - West US 3 (Arizona)</option>
+                    </select>
+                </div>
+                <div class="form-group" id="onPremLocationGroup" style="display: none;">
+                    <label for="onPremLocation">On-Premises Data Center:</label>
+                    <select id="onPremLocation" name="onPremLocation">
+                        <option value="">Select Data Center</option>
+                        <option value="EDC">EDC - Arizona</option>
+                        <option value="MDC">MDC - Nebraska</option>
+                        <option value="RDC">RDC - Texas</option>
+                    </select>
+                </div>
+                <button type="submit">Generate AG Name</button>
+            </form>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleLocationDropdowns() {
+            const locationType = document.getElementById('locationType').value;
+            const azureGroup = document.getElementById('azureLocationGroup');
+            const onPremGroup = document.getElementById('onPremLocationGroup');
+            
+            azureGroup.style.display = 'none';
+            onPremGroup.style.display = 'none';
+            
+            if (locationType === 'azure') {
+                azureGroup.style.display = 'block';
+                document.getElementById('azureLocation').required = true;
+                document.getElementById('onPremLocation').required = false;
+            } else if (locationType === 'onprem') {
+                onPremGroup.style.display = 'block';
+                document.getElementById('azureLocation').required = false;
+                document.getElementById('onPremLocation').required = true;
+            }
+        }
+
+        document.getElementById('agForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const appName = document.getElementById('appName').value;
+            const locationType = document.getElementById('locationType').value;
+            const location = locationType === 'azure' 
+                ? document.getElementById('azureLocation').value 
+                : document.getElementById('onPremLocation').value;
+            
+            // Placeholder for AG naming logic
+            const agName = `ag-${appName.toLowerCase()}-${location}`;
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <h3>Generated Availability Group Name:</h3>
+                <p><strong>${agName}</strong></p>
+                <p><em>Note: This is a placeholder. The actual naming convention will be implemented based on your requirements.</em></p>
+            `;
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('AG Naming Standards Helper loaded successfully!');
+        });
+    </script>
+</body>
+</html> 
